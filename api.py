@@ -33,7 +33,7 @@ def get_languages():
     '''
     # repos = get_trending_repo()
     if repos != 1:
-        languages_list = [repo['language'] for repo in repos if repo['language'] != None]
+        languages_list = [repo['language'] for repo in repos if repo['language'] is not None]
         dico_langues = {lang : languages_list.count(lang) for lang in languages_list}
         d_sorted = sorted(dico_langues.items(), reverse=True, key=lambda x: x[1])
         languages_occurence = {i[0]: i[1] for i in d_sorted}
@@ -49,7 +49,7 @@ def get_languages_repos(language_name):
         list all repos(among the trending) which use the given language
     '''
     if repos != []:
-        given_language_repos = {language_name: [r['html_url'] for r in repos if r['language'] != None and r['language'].lower() == language_name.lower()]}
+        given_language_repos = {language_name: [r['html_url'] for r in repos if r['language'] is not None and r['language'].lower() == language_name.lower()]}
         return jsonify(given_language_repos)
     else:
         pass
