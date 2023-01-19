@@ -18,8 +18,7 @@ def get_trending_repo():
     req = requests.get("https://api.github.com/search/repositories?q=created:>{}&sort=stars&order=desc?page=1&per_page=100".format(timer), headers=headers)
     if req.status_code == 200:
         return req.json()['items']
-    else:
-        return 1
+    return 1
 
 
 repos = get_trending_repo()
@@ -40,8 +39,7 @@ def get_languages():
         if languages_occurence != {}:
             return jsonify(languages_occurence)
         return jsonify({'message': 'No language were found !'})
-    else:
-        return jsonify({'message': 'Something went wrong !'})
+    return jsonify({'message': 'Something went wrong !'})
 
 @app.route("/trend/languages/<language_name>", methods=['GET'])
 def get_languages_repos(language_name):
@@ -51,8 +49,7 @@ def get_languages_repos(language_name):
     if repos != []:
         given_language_repos = {language_name: [r['html_url'] for r in repos if r['language'] != None and r['language'].lower() == language_name.lower()]}
         return jsonify(given_language_repos)
-    else:
-        pass
+    pass
 
 
 
