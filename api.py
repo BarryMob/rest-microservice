@@ -31,7 +31,6 @@ def get_languages():
     '''
         list all (main) languages used in trending repos
     '''
-    # repos = get_trending_repo()
     if repos != 1:
         languages_list = [repo['language'] for repo in repos if repo['language'] != None]
         dico_langues = {lang : languages_list.count(lang) for lang in languages_list}
